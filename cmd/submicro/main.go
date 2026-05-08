@@ -21,7 +21,11 @@ func main() {
 	server := api.New(book)
 
 	go func() {
-		if err := server.Start(":8080"); err != nil {
+		port := os.Getenv("PORT")
+		if port == "" {
+			port = "8080"
+		}
+		if err := server.Start(":" + port); err != nil {
 			slog.Error("api server failed", "err", err)
 			os.Exit(1)
 		}

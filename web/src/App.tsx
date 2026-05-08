@@ -5,11 +5,6 @@ interface PriceLevel {
   quantity: string;
 }
 
-interface BookSnapshot {
-  bids: PriceLevel[];
-  asks: PriceLevel[];
-}
-
 interface Trade {
   price: string;
   quantity: string;
@@ -24,7 +19,7 @@ interface Message {
 
 const MAX_LEVELS = 15;
 const MAX_TRADES = 50;
-const WS_URL = "ws://localhost:8080/ws";
+const WS_URL = import.meta.env.VITE_WS_URL || "ws://localhost:8080/ws";
 
 export default function App() {
   const [bids, setBids] = useState<PriceLevel[]>([]);
@@ -166,7 +161,7 @@ export default function App() {
       </div>
 
       <div style={{ marginTop: "16px", fontSize: "11px", color: "#334155", textAlign: "center" }}>
-        Engine: 1.2M orders/sec · Sub-microsecond matching · Fed by Gemini live WebSocket API
+        Engine: 1.4M orders/sec · Sub-microsecond matching · Fed by Gemini live WebSocket API
       </div>
     </div>
   );
